@@ -226,11 +226,11 @@ p.name as product_name,
 p.price as product_price,
 c.name as category_name
 	from products as p
-right join category_product as cp
-on p.id = cp.product_id
-right join categories as c
-on c.id = cp.category_id
-order by p.name, c.name desc
+	right join category_product as cp
+		on p.id = cp.product_id
+	right join categories as c
+		on c.id = cp.category_id
+	order by p.name, c.name desc
 --where c.name ilike 'ac%';
 	
 delete from products where id=1;
@@ -244,8 +244,7 @@ where id = 2;
 select * from products 
 order by name desc --asc
 limit 2
-offset 1
-;
+offset 1;
 
 select 
 count(id),
@@ -268,8 +267,10 @@ order by name;
 select products.name,
 count(categories.id)
 from products 
-join category_product on products.id = category_product.product_id
-join categories on categories.id = category_product.category_id
+join category_product 
+	on products.id = category_product.product_id
+join categories 
+	on categories.id = category_product.category_id
 group by products.name
 having count(categories.id) = 2
 order by products.name desc;
